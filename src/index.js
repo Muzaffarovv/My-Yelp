@@ -1,14 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals'
+import '@aws-amplify/ui-react/styles.css'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
+import Amplify from 'aws-amplify'
+import config from './aws-exports';
+import { AmplifyProvider } from '@aws-amplify/ui-react'
+
+Amplify.configure(config)
+const theme = {
+  name: 'pretty-princess',
+  tokens: {
+    colors: {
+      background: {
+        primary: { value: 'yellow '}
+      }
+    }
+  }
+}
+ReactDOM.render(
+  <AmplifyProvider theme={theme}>
     <App />
-  </React.StrictMode>
+  </AmplifyProvider>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
